@@ -76,8 +76,7 @@ fclose($filepointer);
     <center>
     <img src="holly.png" width="100">
     <h1>Christmas lighting control panel</h1>
-    <b>(currently a work in progress)</b>
-    <hr>
+    <div style="width:500px;color:#000000;background-color:#f0f0f0">Currently a work-in-progress</div><br>
         <form method="post" action="<?php echo $PHP_SELF;?>">
             <table border="0">
                 <tr><td></td><td>
@@ -104,12 +103,11 @@ fclose($filepointer);
                 </td></tr>
             </table>
         </form>
-        <hr>
     <?php if ($serialrecieved == False) {
-            echo('<div style="width:100%;color:#000000;background-color:#Ff8080">Arduino is not responding!</div>');
+            echo('<div style="width:500px;color:#000000;background-color:#Ff8080">Arduino is not responding!</div>');
         }
         else {
-            echo('<div style="width:100%;color:#000000;background-color:#90ff90">Arduino is responding.</div>');
+            echo('<div style="width:500px;color:#000000;background-color:#90ff90">Arduino is responding.</div>');
             echo($serialrecieved);
         }
     ?>
