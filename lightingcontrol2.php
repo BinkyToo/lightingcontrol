@@ -18,6 +18,11 @@ switch ($wave) {
     break;
     case "Square":
     fwrite($filepointer, "square\n");
+    case "Triangle":
+    fwrite($filepointer, "sine\n");
+    break;
+    case "Sawtooth":
+    fwrite($filepointer, "saw\n");
     break;
     default:
         die("Error: Not a recognised wave");
@@ -83,6 +88,8 @@ fclose($filepointer);
                     </td><td>
                         <input type="submit" value="Sine" name="wave" style="width:80px">
                         <input type="submit" value="Square" name="wave" style="width:80px">
+                        <input type="submit" value="Triangle" name="wave" style="width:80px">
+                        <input type="submit" value="Sawtooth" name="wave" style="width:80px">
                 </td></tr><tr><td>
                     Speed:
                     </td><td>
