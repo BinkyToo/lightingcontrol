@@ -111,6 +111,8 @@ fclose($filepointer);
             echo($serialrecieved);
         }
     ?>
+    <br><br>
+    <img src="holly-flip.png" width="100">
     </center>
 </body>
 </html>
