@@ -1,0 +1,110 @@
+<?php
+$serialPort = "/dev/ttyACM7";
+
+$filepointer = fopen($serialPort, "r+");
+
+if (isset($_POST["wave"])) {
+$wave = $_POST["wave"];
+
+switch ($wave) {
+    case "Off":
+    fwrite($filepointer, "off\n");
+    break;
+    case "On":
+    fwrite($filepointer, "on\n");
+    break;
+    case "Sine":
+    fwrite($filepointer, "sine\n");
+    break;
+    case "Square":
+    fwrite($filepointer, "square\n");
+    break;
+    default:
+        die("Not a recognised wave");
+    }
+}
+elseif (isset($_POST["speed"])) {
+$speed = $_POST["speed"];
+switch ($speed) {
+    case "+":
+    fwrite($filepointer, "faster\n");
+    break;
+    case "-":
+    fwrite($filepointer, "slower\n");
+    break;
+    default:
+        die("Not a recognised speed");
+    }
+}
+elseif (isset($_POST["interpolation"])) {
+$interpolation = $_POST["interpolation"];
+switch ($interpolation) {
+    case "On":
+    fwrite($filepointer, "interpolation on\n");
+    break;
+    case "Off":
+    fwrite($filepointer, "interpolation off\n");
+    break;
+    default:
+        die("Not a recognised interpolation mode");
+    }
+}
+else {
+    fwrite($filepointer, "ping\n");
+}
+usleep(50000);
+while ($newchar != "0") {
+    $newchar = fgetc($filepointer);
+    $serialrecieved = $serialrecieved.$newchar;
+    usleep(5000);
+}
+
+fclose($filepointer);
+?>
+
+<html>
+<head>
+    <title>Lighting control v2.0</title>
+</head>
+<body>
+    <center>
+    <img src="holly.png" width="100">
+    <h1>Christmas lighting control panel</h1>
+    <b>(currently a work in progress)</b>
+    <hr>
+        <form method="post" action="<?php echo $PHP_SELF;?>">
+            <table border="0">
+                <tr><td></td><td>
+                    <input type="submit" value="Off" name="wave" style="width:80px">
+                </td></tr><tr><td></td><td>
+                        <input type="submit" value="On" name="wave" style="width:80px">
+                </td></tr><tr><td>
+                    Waves:
+                    </td><td>
+                        <input type="submit" value="Sine" name="wave" style="width:80px">
+                        <input type="submit" value="Square" name="wave" style="width:80px">
+                </td></tr><tr><td>
+                    Speed:
+                    </td><td>
+                    <input type="submit" value="-" name="speed" style="width:38px">
+                    <input type="submit" value="+" name="speed" style="width:38px">
+                </td></tr><tr><td>
+                    Interpolation:
+                    </td><td>
+                    <input type="submit" value="On" name="interpolation" style="width:38px">
+                    <input type="submit" value="Off" name="interpolation" style="width:38px">
+                </td></tr>
+            </table>
+        </form>
+        <hr>
+    <?php if ($serialrecieved == False) {
+            echo('<div style="width:100%;color:#000000;background-color:#Ff8080">Arduino is not responding!</div>');
+        }
+        else {
+            echo('<div style="width:100%;color:#000000;background-color:#90ff90">Arduino is responding.</div>');
+            echo($serialrecieved);
+        }
+    ?>
+    </center>
+</body>
+</html>
