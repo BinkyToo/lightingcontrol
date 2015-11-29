@@ -84,19 +84,19 @@ fclose($filepointer);
                 </td></tr><tr><td></td><td>
                         <input type="submit" value="On" name="wave" style="width:80px">
                 </td></tr><tr><td>
-                    Waves:
+                    Waves
                     </td><td>
                         <input type="submit" value="Sine" name="wave" style="width:80px">
                         <input type="submit" value="Square" name="wave" style="width:80px">
                         <input type="submit" value="Triangle" name="wave" style="width:80px">
                         <input type="submit" value="Sawtooth" name="wave" style="width:80px">
                 </td></tr><tr><td>
-                    Speed:
+                    Speed
                     </td><td>
                     <input type="submit" value="-" name="speed" style="width:38px">
                     <input type="submit" value="+" name="speed" style="width:38px">
                 </td></tr><tr><td>
-                    Interpolation:
+                    Interpolation
                     </td><td>
                     <input type="submit" value="Off" name="interpolation" style="width:38px">
                     <input type="submit" value="On" name="interpolation" style="width:38px">
