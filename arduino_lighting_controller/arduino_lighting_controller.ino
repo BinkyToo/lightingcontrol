@@ -1,20 +1,21 @@
 
-String inputString = "";
-boolean stringComplete = false;
+String inputString = "";              // Where we collect commands arriving over the serial connection
+boolean stringComplete = false;       // Every command ends with a newline character - have we got one yet?
 
-int rate = 151;
-int rateincrement = 25;
+int rate = 151;                       // Proportional to the wave frequency - deliberately one more than a multiple of below
+int rateincrement = 25;               // How much the faster/slower commands change, see above
 
-const int cyclelength = 10000;
-int cyclepos = 0;
+const int cyclelength = 10000;        // Total number of steps in pattern. may be skipped or interpolated
+int cyclepos = 0;                     // where are we in the wave?
 
-const int channels = 3;
+const int channels = 3;               // Number of different outputs (equal phase separation
 
-int brightnesses[channels];
-float brightness = 0.0;
-const int brightnesslevels = 16;
+int brightnesses[channels];           // Where we put the output values before putting them out
+float brightness = 0.0;               // The brightness of the channel currently being calculated for
+const int brightnesslevels = 16;      // Resolution of the pattern definitions (one axis)
 
-const int patternlength = 16;
+const int patternlength = 16;         // Resolution of the pattern definitions (other axis)
+
 const int off[patternlength] =          {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0};
 const int on[patternlength] =           {15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15};
 const int squarewave[patternlength] =   {15, 15, 15, 15, 15, 15, 15, 15, 0,  0,  0,  0,  0,  0,  0,  0};
@@ -28,15 +29,16 @@ const int unshortblip[patternlength] =  {15, 15, 15, 15, 15, 15, 15, 15, 15, 15,
 const int unlongblip[patternlength] =   {15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0,  0,  0,  0,  0};
 
 int currentwave[patternlength] =        {8,  10, 13, 14, 15, 14, 13, 10, 8,  5,  2,  1,  0,  1,  2,  5};
+                                      // Pre-set to sine wave for testing, ideally pre-set to off - FIXME
 
-bool manual = false;
-bool interpolate = true;
+bool manual = false;                  // Disables automatic brightness etting from patterns
+bool interpolate = true;              // Use linear interpolation for smoother fades?
 
-float phaseposition = 0;
+float phaseposition = 0;              // Where are we in the pattern, from 0 to 1
 
 void setup() {
   Serial.begin(9600);
-  inputString.reserve(200);
+  inputString.reserve(200);           // Lets hope we don't get any really long commands (FIXME!)
 }
 
 void loop() {
