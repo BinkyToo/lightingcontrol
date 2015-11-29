@@ -99,8 +99,8 @@ fclose($filepointer);
                 </td></tr><tr><td>
                     Interpolation:
                     </td><td>
-                    <input type="submit" value="On" name="interpolation" style="width:38px">
                     <input type="submit" value="Off" name="interpolation" style="width:38px">
+                    <input type="submit" value="On" name="interpolation" style="width:38px">
                 </td></tr>
             </table>
         </form>
