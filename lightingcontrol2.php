@@ -20,7 +20,7 @@ switch ($wave) {
     fwrite($filepointer, "square\n");
     break;
     default:
-        die("Not a recognised wave");
+        die("Error: Not a recognised wave");
     }
 }
 elseif (isset($_POST["speed"])) {
@@ -33,7 +33,7 @@ switch ($speed) {
     fwrite($filepointer, "slower\n");
     break;
     default:
-        die("Not a recognised speed");
+        die("Error: Not a recognised speed");
     }
 }
 elseif (isset($_POST["interpolation"])) {
@@ -46,7 +46,7 @@ switch ($interpolation) {
     fwrite($filepointer, "interpolation off\n");
     break;
     default:
-        die("Not a recognised interpolation mode");
+        die("Error: Not a recognised interpolation mode");
     }
 }
 else {
