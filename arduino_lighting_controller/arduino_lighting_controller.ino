@@ -44,12 +44,6 @@ void loop() {
 
   for(int channel = 0; channel < channels; ++channel){
     phaseposition = fmodf((((float)cyclepos)/cyclelength)+(((float)channel)/channels), 1.0);
-    //brightness = currentwave[(int)(patternlength*phaseposition)] * ((256/patternlength)+1);
-    //
-    
-    //brightness =   (fmodf(patternlength*phaseposition, 1.0) * currentwave[(int)(patternlength*phaseposition)]) +
-    //             (1-fmodf(patternlength*phaseposition, 1.0) * currentwave[(int)((patternlength*phaseposition)+1)]);
-                 
     float p = patternlength * phaseposition;
     int lower = currentwave[(int)p];
     int upper = currentwave[((int)(p+1)) % patternlength];
