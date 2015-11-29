@@ -18,6 +18,7 @@ switch ($wave) {
     break;
     case "Square":
     fwrite($filepointer, "square\n");
+    break;
     case "Triangle":
     fwrite($filepointer, "triangle\n");
     break;
