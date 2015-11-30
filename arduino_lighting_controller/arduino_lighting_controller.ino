@@ -73,7 +73,7 @@ void calculateBrightnesses(){
     else{
       brightness = lower;
     }
-    brightnesses[channel] = brightness * (255.0/(brightnesslevels-1));
+    brightnesses[channel] = brightness * (255.0/(brightnesslevels-1));      // Whats going on with types here?
     }
 }
 
