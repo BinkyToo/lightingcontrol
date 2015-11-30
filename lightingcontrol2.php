@@ -59,11 +59,11 @@ else {
     fwrite($filepointer, "ping\n");
 }
 usleep(50000);
-while ($newchar !== FALSE) {
+do {
     $newchar = fgetc($filepointer);
     $serialrecieved = $serialrecieved.$newchar;
     usleep(5000);
-}
+} while ($newchar !== FALSE);
 
 fclose($filepointer);
 ?>
