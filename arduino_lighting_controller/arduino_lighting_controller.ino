@@ -62,7 +62,7 @@ void loop() {
     brightnesses[(int) channel] = outputbrightness; 
   }
     
-  if (manual == false){
+  if (!manual){
     analogWrite(9, brightnesses[0]);
     analogWrite(10, brightnesses[1]);
     analogWrite(11, brightnesses[2]);
