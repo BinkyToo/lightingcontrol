@@ -185,23 +185,25 @@ void handleSerial() {
       Serial.println("Ping sucessful");
     }
     else {
-      Serial.println("Unknown command recieved!");
+      Serial.print("Unknown command recieved: [");
+      Serial.print(inputString);
+      Serial.println("]");
     }
     
   } 
 }
 
 String getCommand(){
-  String inputString = "";
+  String inputStringx = "";
   while (Serial.available()) {
     Serial.write(6);                        // ASCII Acknowledge NPC - tell the web interface the arduino is working, but simplifies pre-display processing
     char inChar = (char)Serial.read();
-    inputString += inChar;
+    inputStringx += inChar;
     if (inChar == '\n') {
       break;
     }
   }
-  return(inputString);
+  return(inputStringx);
 }
 
 void sendStatus(){              // Not used currently; generating snippets of HTML here is yukky
