@@ -61,13 +61,14 @@ void setBrightnesses(int brightnessesToSet[]){
 
 void calculateBrightnesses(){
   for(int channel = 0; channel < channels; ++channel){
+    
     phaseposition = fmodf((((float)cyclepos)/cyclelength)+(((float)channel)/channels), 1.0);
     float p = patternlength * phaseposition;
     int lower = currentwave[(int)p];
-    int upper = currentwave[((int)(p+1)) % patternlength];
-    float upperweighting = fmodf(p, 1.0);
-    float lowerweighting = 1.0 - upperweighting;
     if (interpolate){
+      int upper = currentwave[((int)(p+1)) % patternlength];
+      float upperweighting = fmodf(p, 1.0);
+      float lowerweighting = 1.0 - upperweighting;
       brightness = (lower * lowerweighting) + (upper * upperweighting);
     }
     else{
