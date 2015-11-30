@@ -43,18 +43,19 @@ void setup() {
 
 void loop() {
   handleSerial();
-
   calculateBrightnesses();
-    
   if (!manual){
-    analogWrite(9, brightnesses[0]);
-    analogWrite(10, brightnesses[1]);
-    analogWrite(11, brightnesses[2]);
+    setBrightnesses();
     cyclepos+= rate;
     if (cyclepos >= cyclelength) { cyclepos = 0; }    // Surely this could be done with a modulo? (tried but no luck)
   }
-  
   delay(5);
+}
+
+void setBrightnesses(){
+  analogWrite(9, brightnesses[0]);
+  analogWrite(10, brightnesses[1]);
+  analogWrite(11, brightnesses[2]);
 }
 
 void calculateBrightnesses(){
