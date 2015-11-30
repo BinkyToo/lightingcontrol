@@ -4,6 +4,7 @@ boolean stringComplete = false;       // Every command ends with a newline chara
 
 int rate = 151;                       // Proportional to the wave frequency - deliberately one more than a multiple of below
 int rateincrement = 25;               // How much the faster/slower commands change, see above
+const int baseTimePeriod = 5;         // How long to wait each time through the loop - defines maximum speed
 
 const int cyclelength = 10000;        // Total number of steps in pattern. may be skipped or interpolated
 int cyclepos = 0;                     // where are we in the wave?
@@ -49,7 +50,7 @@ void loop() {
     cyclepos+= rate;
     if (cyclepos >= cyclelength) { cyclepos = 0; }    // Surely this could be done with a modulo? (tried but no luck)
   }
-  delay(5);
+  delay(baseTimePeriod);
 }
 
 void setBrightnesses(){
