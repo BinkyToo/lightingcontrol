@@ -88,7 +88,7 @@ void handleSerial() {
     }
   }
   if (stringComplete) {                     // What follows is horrid, and would  be better handled by a switch, if that were possible?
-    if (inputString == "faster\n"){         // For most commands, human-readable feedback is sent over serial. this takes the place of comments
+    if (inputString == "faster\n"){         // For some (preferably all) commands, human-readable feedback is sent over serial. this takes the place of comments
       if ((rate+rateincrement)<(cyclelength/patternlength)){
         rate += rateincrement;
         Serial.print("Increased rate to "); Serial.println(rate);
