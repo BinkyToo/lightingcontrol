@@ -73,9 +73,7 @@ void calculateBrightnesses(){
     else{
       brightness = lower;
     }
-    int outputbrightness = brightness * (255.0/(brightnesslevels-1));
-  
-    brightnesses[(int) channel] = outputbrightness; 
+    brightnesses[channel] = brightness * (255.0/(brightnesslevels-1));
     }
 }
 
