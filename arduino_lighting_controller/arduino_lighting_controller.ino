@@ -200,10 +200,10 @@ String getCommand(){
     char inChar = (char)Serial.read();
     inputStringx += inChar;
     if (inChar == '\n') {
-      Serial.println(inputStringx);
+      //Serial.println(inputStringx);       // Handy for debugging
       break;
     }
-    //delay(3);
+    delay(5);                               // Wait for whole message to arrive
   }
   return(inputStringx);
 }

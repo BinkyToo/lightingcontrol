@@ -1,5 +1,5 @@
 <?php
-$serialPort = "/dev/ttyACM8";
+$serialPort = "/dev/ttyACM7";
 
 $filepointer = fopen($serialPort, "r+");
 
