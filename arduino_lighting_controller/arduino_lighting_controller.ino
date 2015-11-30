@@ -1,5 +1,5 @@
 String inputString = "";              // Where we collect commands arriving over the serial connection
-boolean stringComplete = false;       // Every command ends with a newline character - have we got one yet?
+//boolean stringComplete = false;       // Every command ends with a newline character - have we got one yet?
 
 int rate = 151;                       // Proportional to the wave frequency - deliberately one more than a multiple of below
 int rateincrement = 25;               // How much the faster/slower commands change, see above
@@ -79,15 +79,9 @@ void calculateBrightnesses(){
 }
 
 void handleSerial() {
-  while (Serial.available()) {
-    Serial.write(6);                        // ASCII Acknowledge NPC - tell the web interface the arduino is working, but simplifies pre-display processing
-    char inChar = (char)Serial.read();
-    inputString += inChar;
-    if (inChar == '\n') {
-      stringComplete = true;
-    }
-  }
-  if (stringComplete) {                     // What follows is horrid, and would  be better handled by a switch, if that were possible?
+  inputString = getCommand();
+  
+  if (true) {                     // What follows is horrid, and would  be better handled by a switch, if that were possible?
     if (inputString == "faster\n"){         // For some (preferably all) commands, human-readable feedback is sent over serial. this takes the place of comments
       if ((rate+rateincrement)<(cyclelength/patternlength)){
         rate += rateincrement;
@@ -193,9 +187,21 @@ void handleSerial() {
     else {
       Serial.println("Unknown command recieved!");
     }
-    inputString = "";
-    stringComplete = false;
+    
   } 
+}
+
+String getCommand(){
+  String inputString = "";
+  while (Serial.available()) {
+    Serial.write(6);                        // ASCII Acknowledge NPC - tell the web interface the arduino is working, but simplifies pre-display processing
+    char inChar = (char)Serial.read();
+    inputString += inChar;
+    if (inChar == '\n') {
+      break;
+    }
+  }
+  return(inputString);
 }
 
 void sendStatus(){              // Not used currently; generating snippets of HTML here is yukky
