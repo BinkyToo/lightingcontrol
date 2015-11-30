@@ -44,23 +44,7 @@ void setup() {
 void loop() {
   handleSerial();
 
-  for(int channel = 0; channel < channels; ++channel){
-    phaseposition = fmodf((((float)cyclepos)/cyclelength)+(((float)channel)/channels), 1.0);
-    float p = patternlength * phaseposition;
-    int lower = currentwave[(int)p];
-    int upper = currentwave[((int)(p+1)) % patternlength];
-    float upperweighting = fmodf(p, 1.0);
-    float lowerweighting = 1.0 - upperweighting;
-    if (interpolate){
-      brightness = (lower * lowerweighting) + (upper * upperweighting);
-    }
-    else{
-      brightness = lower;
-    }
-      int outputbrightness = brightness * (255.0/(brightnesslevels-1));
-
-    brightnesses[(int) channel] = outputbrightness; 
-  }
+  calculateBrightnesses();
     
   if (!manual){
     analogWrite(9, brightnesses[0]);
@@ -71,6 +55,26 @@ void loop() {
   if (cyclepos >= cyclelength) { cyclepos = 0; }
   
   delay(5);
+}
+
+void calculateBrightnesses(){
+    for(int channel = 0; channel < channels; ++channel){
+      phaseposition = fmodf((((float)cyclepos)/cyclelength)+(((float)channel)/channels), 1.0);
+      float p = patternlength * phaseposition;
+      int lower = currentwave[(int)p];
+      int upper = currentwave[((int)(p+1)) % patternlength];
+      float upperweighting = fmodf(p, 1.0);
+      float lowerweighting = 1.0 - upperweighting;
+      if (interpolate){
+        brightness = (lower * lowerweighting) + (upper * upperweighting);
+      }
+      else{
+        brightness = lower;
+      }
+        int outputbrightness = brightness * (255.0/(brightnesslevels-1));
+  
+      brightnesses[(int) channel] = outputbrightness; 
+    }
 }
 
 void handleSerial() {
