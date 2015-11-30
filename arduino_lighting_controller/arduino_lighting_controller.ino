@@ -51,8 +51,9 @@ void loop() {
     analogWrite(10, brightnesses[1]);
     analogWrite(11, brightnesses[2]);
     cyclepos+= rate;
+    if (cyclepos >= cyclelength) { cyclepos = 0; }
   }
-  if (cyclepos >= cyclelength) { cyclepos = 0; }
+  
   
   delay(5);
 }
