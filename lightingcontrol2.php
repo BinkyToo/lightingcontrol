@@ -1,5 +1,5 @@
 <?php
-$serialPort = "/dev/ttyACM7";
+$serialPort = "/dev/ttyACM8";
 
 $filepointer = fopen($serialPort, "r+");
 
@@ -59,7 +59,7 @@ else {
     fwrite($filepointer, "ping\n");
 }
 usleep(50000);
-while ($newchar != "0") {
+while ($newchar !== FALSE) {
     $newchar = fgetc($filepointer);
     $serialrecieved = $serialrecieved.$newchar;
     usleep(5000);

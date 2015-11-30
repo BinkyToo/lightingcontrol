@@ -81,7 +81,7 @@ void calculateBrightnesses(){
 void handleSerial() {
   inputString = getCommand();
   
-  if (true) {                     // What follows is horrid, and would  be better handled by a switch, if that were possible?
+  if (inputString.length() > 0) {                     // What follows is horrid, and would  be better handled by a switch, if that were possible?
     if (inputString == "faster\n"){         // For some (preferably all) commands, human-readable feedback is sent over serial. this takes the place of comments
       if ((rate+rateincrement)<(cyclelength/patternlength)){
         rate += rateincrement;
@@ -200,8 +200,10 @@ String getCommand(){
     char inChar = (char)Serial.read();
     inputStringx += inChar;
     if (inChar == '\n') {
+      Serial.println(inputStringx);
       break;
     }
+    //delay(3);
   }
   return(inputStringx);
 }
