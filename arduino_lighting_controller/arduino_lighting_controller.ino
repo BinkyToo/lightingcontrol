@@ -60,22 +60,22 @@ void setBrightnesses(int brightnessesToSet[]){
 }
 
 void calculateBrightnesses(){
-    for(int channel = 0; channel < channels; ++channel){
-      phaseposition = fmodf((((float)cyclepos)/cyclelength)+(((float)channel)/channels), 1.0);
-      float p = patternlength * phaseposition;
-      int lower = currentwave[(int)p];
-      int upper = currentwave[((int)(p+1)) % patternlength];
-      float upperweighting = fmodf(p, 1.0);
-      float lowerweighting = 1.0 - upperweighting;
-      if (interpolate){
-        brightness = (lower * lowerweighting) + (upper * upperweighting);
-      }
-      else{
-        brightness = lower;
-      }
-        int outputbrightness = brightness * (255.0/(brightnesslevels-1));
+  for(int channel = 0; channel < channels; ++channel){
+    phaseposition = fmodf((((float)cyclepos)/cyclelength)+(((float)channel)/channels), 1.0);
+    float p = patternlength * phaseposition;
+    int lower = currentwave[(int)p];
+    int upper = currentwave[((int)(p+1)) % patternlength];
+    float upperweighting = fmodf(p, 1.0);
+    float lowerweighting = 1.0 - upperweighting;
+    if (interpolate){
+      brightness = (lower * lowerweighting) + (upper * upperweighting);
+    }
+    else{
+      brightness = lower;
+    }
+    int outputbrightness = brightness * (255.0/(brightnesslevels-1));
   
-      brightnesses[(int) channel] = outputbrightness; 
+    brightnesses[(int) channel] = outputbrightness; 
     }
 }
 
@@ -107,9 +107,14 @@ void handleSerial() {
         Serial.println("Attempted to decrease rate, but rate already at minimum!");
       }
     }
-    else if (inputString == "slow\n") { rate = 1; Serial.println("Reduced speed to minimum");}
-    else if (inputString == "fast\n") { rate = 251; Serial.println("Increased speed to maximum");}
-    
+    else if (inputString == "slow\n") {
+      rate = 1;
+      Serial.println("Reduced speed to minimum");
+    }
+    else if (inputString == "fast\n") {
+      rate = 251;
+      Serial.println("Increased speed to maximum");
+    }
     else if (inputString == "off\n") {
       memcpy(currentwave, off, (patternlength*sizeof(currentwave[0])));
       Serial.println("Turned all lights off");
