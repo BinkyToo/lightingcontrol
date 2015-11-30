@@ -53,10 +53,10 @@ void loop() {
   delay(baseTimePeriod);
 }
 
-void setBrightnesses(int brightnesses[]){
-  analogWrite(9, brightnesses[0]);
-  analogWrite(10, brightnesses[1]);
-  analogWrite(11, brightnesses[2]);
+void setBrightnesses(int brightnessesToSet[]){
+  analogWrite(9, brightnessesToSet[0]);
+  analogWrite(10, brightnessesToSet[1]);
+  analogWrite(11, brightnessesToSet[2]);
 }
 
 void calculateBrightnesses(){
