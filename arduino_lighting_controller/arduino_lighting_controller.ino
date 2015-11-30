@@ -28,7 +28,7 @@ const int longblip[patternlength] =     {15, 15, 15, 15, 15, 0,  0,  0,  0,  0, 
 const int unshortblip[patternlength] =  {15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0,  0};
 const int unlongblip[patternlength] =   {15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 0,  0,  0,  0,  0};
 
-int currentwave[patternlength] =        {8,  10, 13, 14, 15, 14, 13, 10, 8,  5,  2,  1,  0,  1,  2,  5};
+int currentwave[patternlength] =        {0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0};
                                       // Pre-set to sine wave for testing, ideally pre-set to off - FIXME
 
 bool manual = false;                  // Disables automatic brightness etting from patterns
@@ -58,7 +58,7 @@ void loop() {
       brightness = lower;
     }
       int outputbrightness = brightness * (255.0/(brightnesslevels-1));
-    //
+
     brightnesses[(int) channel] = outputbrightness; 
   }
     
@@ -70,7 +70,6 @@ void loop() {
   }
   if (cyclepos >= cyclelength) { cyclepos = 0; }
   
-
   delay(5);
 }
 
