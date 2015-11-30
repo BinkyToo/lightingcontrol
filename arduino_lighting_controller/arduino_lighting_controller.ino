@@ -75,15 +75,15 @@ void loop() {
 
 void handleSerial() {
   while (Serial.available()) {
-    Serial.write(6);
+    Serial.write(6);                        // ASCII Acknowledge NPC - tell the web interface the arduino is working, but simplifies pre-display processing
     char inChar = (char)Serial.read();
     inputString += inChar;
     if (inChar == '\n') {
       stringComplete = true;
     }
   }
-  if (stringComplete) {
-    if (inputString == "faster\n"){ 
+  if (stringComplete) {                     // What follows is horrid, and would  be better handled by a switch, if that were possible?
+    if (inputString == "faster\n"){         // For most commands, human-readable feedback is sent over serial. this takes the place of comments
       if ((rate+rateincrement)<(cyclelength/patternlength)){
         rate += rateincrement;
         Serial.print("Increased rate to "); Serial.println(rate);
@@ -181,14 +181,14 @@ void handleSerial() {
       Serial.println("Ping sucessful");
     }
     else {
-      Serial.println("?");
+      Serial.println("Unknown command recieved!");
     }
     inputString = "";
     stringComplete = false;
   } 
 }
 
-void sendStatus(){
+void sendStatus(){              // Not used currently; generating snippets of HTML here is yukky
   Serial.print("<br>");
   Serial.print("Channel 1 brightness = ");
   Serial.print(brightnesses[0]);
