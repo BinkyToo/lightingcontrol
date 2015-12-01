@@ -126,7 +126,7 @@ void handleSerial() {
     }
     else if (inputString == "triangle\n") {
       memcpy(currentwave, trianglewave, (patternlength*sizeof(currentwave[0])));
-      Serial.println("Now using trinagle wave pattern");
+      Serial.println("Now using triangle wave pattern");
     }
     else if (inputString == "saw\n") {
       memcpy(currentwave, sawtoothwave, (patternlength*sizeof(currentwave[0])));
