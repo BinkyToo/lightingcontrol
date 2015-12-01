@@ -194,18 +194,20 @@ void handleSerial() {
 }
 
 String getCommand(){
-  String inputStringx = "";
+  static String inputStringx = "";
+  if (inputStringx[inputStringx.length()-1]=='\n'){
+    inputStringx = "";
+  }
   while (Serial.available()) {
     Serial.write(6);                        // ASCII Acknowledge NPC - tell the web interface the arduino is working, but simplifies pre-display processing
     char inChar = (char)Serial.read();
     inputStringx += inChar;
     if (inChar == '\n') {
-      //Serial.println(inputStringx);       // Handy for debugging
-      break;
+      return(inputStringx);
+      inputStringx = "";
     }
-    delay(5);                               // Wait for whole message to arrive
   }
-  return(inputStringx);
+  return("");
 }
 
 void sendStatus(){              // Not used currently; generating snippets of HTML here is yukky
