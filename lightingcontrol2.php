@@ -55,6 +55,16 @@ switch ($interpolation) {
         die("Post data error: Not a recognised interpolation mode");
     }
 }
+elseif (isset($_POST["status"])) {
+$status = $_POST["status"];
+switch ($status) {
+    case "Get status":
+    fwrite($filepointer, "status\n");
+    break;
+    default:
+        die("Post data error: Not a recognised status request");
+    }
+}
 else {
     fwrite($filepointer, "ping\n");
 }
@@ -100,6 +110,9 @@ fclose($filepointer);
                     </td><td>
                     <input type="submit" value="Off" name="interpolation" style="width:38px">
                     <input type="submit" value="On" name="interpolation" style="width:38px">
+                </td></tr><tr><td>
+                    </td><td>
+                    <input type="submit" value="Get status" name="status" style="width:80px">
                 </td></tr>
             </table>
         </form>

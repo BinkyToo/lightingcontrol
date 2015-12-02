@@ -184,6 +184,9 @@ void handleSerial() {
     else if (inputString == "ping\n"){
       Serial.println("Ping sucessful");
     }
+    else if (inputString == "status\n"){
+      sendStatus();
+    }
     else {
       Serial.print("Unknown command recieved: [");
       Serial.print(inputString);
