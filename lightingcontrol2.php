@@ -121,7 +121,7 @@ fclose($filepointer);
         }
         else {
             echo('<div style="width:500px;color:#000000;background-color:#90ff90">Arduino is responding.</div>');
-            echo($serialrecieved);
+            echo('<font face="monospace">'.$serialrecieved.'</font>');
         }
     ?>
     <br><br>
