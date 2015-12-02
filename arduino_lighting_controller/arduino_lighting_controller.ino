@@ -223,6 +223,7 @@ void sendStatus(){              // Not used currently; generating snippets of HT
   Serial.print("<br>");
   Serial.print("Channel 3 brightness = ");
   Serial.print(brightnesses[2]);
+  Serial.print("<br>");
 }
 
 
