@@ -81,9 +81,9 @@ fclose($filepointer);
             <table border="0">
                 <tr><td></td><td>
                     <input type="submit" value="Off" name="wave" style="width:80px">
-                </td></tr><tr><td></td><td>
-                        <input type="submit" value="On" name="wave" style="width:80px">
-                </td></tr><tr><td>
+                    <input type="submit" value="On" name="wave" style="width:80px">
+                </td></tr>
+                <tr><td>
                     Waves
                     </td><td>
                         <input type="submit" value="Sine" name="wave" style="width:80px">
