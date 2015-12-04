@@ -67,16 +67,7 @@ switch ($status) {
 }
 elseif (isset($_POST["controlmode"])) {
 $controlmode = $_POST["controlmode"];
-switch ($controlmode) {
-    case "Manual":
-        fwrite($filepointer, "manual\n");
-    break;
-    case "Auto":
-        fwrite($filepointer, "auto\n");
-    break;
-    default:
-        die("Post data error: Not a recognised control mode request");
-    }
+fwrite($filepointer, $controlmode."\n");
 }
 elseif (isset($_POST["channelset"])) {
 $channelset = $_POST["channelset"];

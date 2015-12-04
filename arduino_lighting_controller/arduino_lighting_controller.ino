@@ -155,11 +155,11 @@ void handleSerial() {
       interpolate = false;
       Serial.println("Turned interpolation off");
       }
-    else if (inputString == "manual\n"){
+    else if (inputString == "Manual\n"){
       manual = true;
       Serial.println("Manual control mode; automatic sequencing disabled");
     }
-    else if (inputString == "auto\n"){
+    else if (inputString == "Auto\n"){
       manual = false;
       Serial.println("Automatic sequencing enabled");
     }
