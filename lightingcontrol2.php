@@ -1,12 +1,16 @@
 <?php
-$serialPort = "/dev/ttyACM7";
+session_start();
 
-$filepointer = fopen($serialPort, "r+");
+if (!array_key_exists("serialport")){
+    $_SESSION["serialport"] = "/dev/ttyACM0";
+    }
+
+$filepointer = fopen($_SESSION["serial port"], "r+");
 
 if (isset($_POST["serialPort"])) {
     fclose($filepointer);
-    $serialPort = "/dev/tty".$_POST["serialPort"];
-    $filepointer = fopen($serialPort, "r+");
+    $_SESSION["serial port"] = "/dev/tty".$_POST["serialPort"];
+    $filepointer = fopen($_SESSION["serial port"], "r+");
 }
 
 if (isset($_POST["wave"])) {
