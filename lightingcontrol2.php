@@ -114,14 +114,14 @@ fclose($filepointer);
                 <tr><td>
                     </td><td>
                     <input type="submit" value="Red On" name="channelset" style="width:80px">
-                    <input type="submit" value="Green On" name="channelset" style="width:80px">
                     <input type="submit" value="Yellow On" name="channelset" style="width:80px">
+                    <input type="submit" value="Green On" name="channelset" style="width:80px">
                 </td></tr>
                 <tr><td>
                     </td><td>
                     <input type="submit" value="Red Off" name="channelset" style="width:80px">
-                    <input type="submit" value="Green Off" name="channelset" style="width:80px">
                     <input type="submit" value="Yellow Off" name="channelset" style="width:80px">
+                    <input type="submit" value="Green Off" name="channelset" style="width:80px">
                 </td></tr>
             </table>
         </form>
