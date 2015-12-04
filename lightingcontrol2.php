@@ -3,6 +3,12 @@ $serialPort = "/dev/ttyACM7";
 
 $filepointer = fopen($serialPort, "r+");
 
+if (isset($_POST["serialPort"])) {
+    fclose($filepointer);
+    $serialPort = "/dev/tty".$_POST["serialPort"];
+    $filepointer = fopen($serialPort, "r+");
+}
+
 if (isset($_POST["wave"])) {
 $wave = $_POST["wave"];
 fwrite($filepointer, $wave."\n");
@@ -73,9 +79,23 @@ fclose($filepointer);
     <center>
     <img src="holly.png" width="100">
     <h1>Christmas lighting control panel</h1>
-    <div style="width:500px;color:#000000;background-color:#f0f0f0">Currently a work-in-progress</div><br>
+    <div style="width:640px;color:#000000;background-color:#f0f0f0">Currently a work-in-progress</div><br>
         <form method="post" action="<?php echo $PHP_SELF;?>">
             <table border="0">
+                <tr><td>
+                    Serial Port:
+                </td><td>
+                    <input type="submit" value="ACM0" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM1" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM2" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM3" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM4" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM5" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM6" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM7" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM8" name="serialPort" style="width:50px">
+                    <input type="submit" value="ACM9" name="serialPort" style="width:50px">
+                </td></tr>
                 <tr><td></td><td>
                     <input type="submit" value="Off" name="wave" style="width:80px">
                     <input type="submit" value="On" name="wave" style="width:80px">
@@ -126,10 +146,10 @@ fclose($filepointer);
             </table>
         </form>
     <?php if ($serialrecieved == False) {
-            echo('<div style="width:500px;color:#000000;background-color:#Ff8080">Arduino is not responding!</div>');
+            echo('<div style="width:640px;color:#000000;background-color:#Ff8080">Arduino is not responding!</div>');
         }
         else {
-            echo('<div style="width:500px;color:#000000;background-color:#90ff90">Arduino is responding.</div>');
+            echo('<div style="width:640px;color:#000000;background-color:#90ff90">Arduino is responding.</div>');
             echo('<font face="monospace">'.$serialrecieved.'</font>');
         }
     ?>
