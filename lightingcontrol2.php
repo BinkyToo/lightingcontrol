@@ -9,7 +9,12 @@ $filepointer = fopen($_SESSION["serial port"], "r+");
 
 if (isset($_POST["serialPort"])) {
     fclose($filepointer);
-    $_SESSION["serial port"] = "/dev/tty".$_POST["serialPort"];
+    if (in_array($_POST["serialPort"], ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"])){
+        $_SESSION["serial port"] = "/dev/ttyACM".$_POST["serialPort"];
+    }
+    else {
+        die("Attempted to use forbidden serial port!");
+    }
     $filepointer = fopen($_SESSION["serial port"], "r+");
 }
 
@@ -95,16 +100,16 @@ fclose($filepointer);
                 <tr><td>
                     Serial Port:
                 </td><td>
-                    <input type="submit" value="ACM0" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM1" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM2" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM3" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM4" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM5" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM6" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM7" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM8" name="serialPort" style="width:50px">
-                    <input type="submit" value="ACM9" name="serialPort" style="width:50px">
+                    <input type="submit" value="0" name="serialPort" style="width:30px">
+                    <input type="submit" value="1" name="serialPort" style="width:30px">
+                    <input type="submit" value="2" name="serialPort" style="width:30px">
+                    <input type="submit" value="3" name="serialPort" style="width:30px">
+                    <input type="submit" value="4" name="serialPort" style="width:30px">
+                    <input type="submit" value="5" name="serialPort" style="width:30px">
+                    <input type="submit" value="6" name="serialPort" style="width:30px">
+                    <input type="submit" value="7" name="serialPort" style="width:30px">
+                    <input type="submit" value="8" name="serialPort" style="width:30px">
+                    <input type="submit" value="9" name="serialPort" style="width:30px">
                 </td></tr>
                 <tr><td></td><td>
                     <input type="submit" value="Off" name="wave" style="width:80px">
