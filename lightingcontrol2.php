@@ -78,6 +78,31 @@ switch ($controlmode) {
         die("Post data error: Not a recognised control mode request");
     }
 }
+elseif (isset($_POST["channelset"])) {
+$channelset = $_POST["channelset"];
+switch ($channelset) {
+    case "Red On":
+        fwrite($filepointer, "red on\n");
+    break;
+    case "Green On":
+        fwrite($filepointer, "green on\n");
+    break;
+    case "Yellow On":
+        fwrite($filepointer, "yellow on\n");
+    break;
+    case "Red Off":
+        fwrite($filepointer, "red off\n");
+    break;
+    case "Green Off":
+        fwrite($filepointer, "green off\n");
+    break;
+    case "Yellow Off":
+        fwrite($filepointer, "yellow off\n");
+    break;
+    default:
+        die("Post data error: Not a recognised channel set request");
+    }
+}
 else {
     fwrite($filepointer, "ping\n");
 }
@@ -130,6 +155,18 @@ fclose($filepointer);
                     </td><td>
                     <input type="submit" value="Manual" name="controlmode" style="width:80px">
                     <input type="submit" value="Sequenced" name="controlmode" style="width:80px">
+                </td></tr>
+                <tr><td>
+                    </td><td>
+                    <input type="submit" value="Red On" name="channelset" style="width:80px">
+                    <input type="submit" value="Green On" name="channelset" style="width:80px">
+                    <input type="submit" value="Yellow On" name="channelset" style="width:80px">
+                </td></tr>
+                <tr><td>
+                    </td><td>
+                    <input type="submit" value="Red Off" name="channelset" style="width:80px">
+                    <input type="submit" value="Green Off" name="channelset" style="width:80px">
+                    <input type="submit" value="Yellow Off" name="channelset" style="width:80px">
                 </td></tr>
             </table>
         </form>
