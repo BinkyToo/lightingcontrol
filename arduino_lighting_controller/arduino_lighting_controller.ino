@@ -1,5 +1,4 @@
 String inputString = "";              // Where we collect commands arriving over the serial connection
-//boolean stringComplete = false;       // Every command ends with a newline character - have we got one yet?
 
 int rate = 151;                       // Proportional to the wave frequency - deliberately one more than a multiple of below
 int rateincrement = 25;               // How much the faster/slower commands change, see above
@@ -213,25 +212,14 @@ void handleSerial() {
 }
 
 void getCommand(){
-  //static String inputStringx = "";
-  //static String oldinputStringx = "";
-  //if (inputStringx[inputStringx.length()-1]=='\n'){
-  //  inputStringx = "";
-  //}
   while (Serial.available()) {
     Serial.write(6);                        // ASCII Acknowledge NPC - tell the web interface the arduino is working, but simplifies pre-display processing
     char inChar = (char)Serial.read();
     inputString += inChar;
-    //if (inChar == '\n') {
-      //oldinputStringx = inputStringx;
-      //inputString = "";
-      //return(oldinputStringx);
-    //}
   }
-  //return("");
 }
 
-void sendStatus(){              // Not used currently; generating snippets of HTML here is yukky
+void sendStatus(){              // Generating snippets of HTML here is yukky
   Serial.print("<br>");
   Serial.print("Channel 1 brightness = ");
   Serial.print(brightnesses[0]);
@@ -243,7 +231,7 @@ void sendStatus(){              // Not used currently; generating snippets of HT
   Serial.print(brightnesses[2]);
   Serial.print("<br>");
   if (manual)  { Serial.print("Automatic sequencing disabled<br>");}
-  //if (!manual) { Serial.print("Automatic sequencing enabled<br>");}
+  //if (!manual) { Serial.print("Automatic sequencing enabled<br>");} //somehow, this line break the arduino code, badly! (???)
 }
 
 
