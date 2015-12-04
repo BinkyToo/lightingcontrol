@@ -166,26 +166,32 @@ void handleSerial() {
     else if (inputString == "Red On\n"){
       manual = true;
       analogWrite(9, 255);
+      Serial.println("Turned red lights on");
     }
     else if (inputString == "Green On\n"){
       manual = true;
       analogWrite(10, 255);
+      Serial.println("Turned green lights on");
     }
     else if (inputString == "Yellow On\n"){
       manual = true;
       analogWrite(11, 255);
+      Serial.println("Turned yellow lights on");
     }
     else if (inputString == "Red Off\n"){
       manual = true;
       analogWrite(9, 0);
+      Serial.println("Turned red lights off");
     }
     else if (inputString == "Green Off\n"){
       manual = true;
       analogWrite(10, 0);
+      Serial.println("Turned green lights off");
     }
     else if (inputString == "Yellow Off\n"){
       manual = true;
       analogWrite(11, 0);
+      Serial.println("Turned yellow lights off");
     }
     else if (inputString == "ping\n"){
       Serial.println("Ping sucessful");
