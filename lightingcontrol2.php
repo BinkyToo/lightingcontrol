@@ -80,28 +80,7 @@ switch ($controlmode) {
 }
 elseif (isset($_POST["channelset"])) {
 $channelset = $_POST["channelset"];
-switch ($channelset) {
-    case "Red On":
-        fwrite($filepointer, "red on\n");
-    break;
-    case "Green On":
-        fwrite($filepointer, "green on\n");
-    break;
-    case "Yellow On":
-        fwrite($filepointer, "yellow on\n");
-    break;
-    case "Red Off":
-        fwrite($filepointer, "red off\n");
-    break;
-    case "Green Off":
-        fwrite($filepointer, "green off\n");
-    break;
-    case "Yellow Off":
-        fwrite($filepointer, "yellow off\n");
-    break;
-    default:
-        die("Post data error: Not a recognised channel set request");
-    }
+fwrite($filepointer, $channelset."\n");
 }
 else {
     fwrite($filepointer, "ping\n");

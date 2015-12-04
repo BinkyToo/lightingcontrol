@@ -163,27 +163,27 @@ void handleSerial() {
       manual = false;
       Serial.println("Automatic sequencing enabled");
     }
-    else if (inputString == "red on\n"){
+    else if (inputString == "Red On\n"){
       manual = true;
       analogWrite(9, 255);
     }
-    else if (inputString == "green on\n"){
+    else if (inputString == "Green On\n"){
       manual = true;
       analogWrite(10, 255);
     }
-    else if (inputString == "yellow on\n"){
+    else if (inputString == "Yellow On\n"){
       manual = true;
       analogWrite(11, 255);
     }
-    else if (inputString == "red off\n"){
+    else if (inputString == "Red Off\n"){
       manual = true;
       analogWrite(9, 0);
     }
-    else if (inputString == "green off\n"){
+    else if (inputString == "Green Off\n"){
       manual = true;
       analogWrite(10, 0);
     }
-    else if (inputString == "yellow off\n"){
+    else if (inputString == "Yellow Off\n"){
       manual = true;
       analogWrite(11, 0);
     }
