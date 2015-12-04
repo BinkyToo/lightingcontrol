@@ -108,43 +108,43 @@ void handleSerial() {
       rate = 251;
       Serial.println("Increased speed to maximum");
     }
-    else if (inputString == "off\n") {
+    else if (inputString == "Off\n") {
       memcpy(currentwave, off, (patternlength*sizeof(currentwave[0])));
       Serial.println("Turned all lights off");
     }
-    else if (inputString == "on\n") {
+    else if (inputString == "On\n") {
       memcpy(currentwave, on, (patternlength*sizeof(currentwave[0])));
       Serial.println("Turned all lights on");
     }
-    else if (inputString == "sine\n") {
+    else if (inputString == "Sine\n") {
       memcpy(currentwave, sinewave, (patternlength*sizeof(currentwave[0])));
       Serial.println("Now using sine wave pattern");
     }
-    else if (inputString == "square\n") {
+    else if (inputString == "Square\n") {
       memcpy(currentwave, squarewave, (patternlength*sizeof(currentwave[0])));
       Serial.println("Now using square wave pattern");
     }
-    else if (inputString == "triangle\n") {
+    else if (inputString == "Triangle\n") {
       memcpy(currentwave, trianglewave, (patternlength*sizeof(currentwave[0])));
       Serial.println("Now using triangle wave pattern");
     }
-    else if (inputString == "saw\n") {
+    else if (inputString == "Saw\n") {
       memcpy(currentwave, sawtoothwave, (patternlength*sizeof(currentwave[0])));
       Serial.println("Now using sawtooth wave pattern");
     }
-    else if (inputString == "was\n") {
+    else if (inputString == "waS\n") {
       memcpy(currentwave, htootwaswave, (patternlength*sizeof(currentwave[0])));
     }
-    else if (inputString == "shortblip\n") {
+    else if (inputString == "Short Blip\n") {
       memcpy(currentwave, shortblip, (patternlength*sizeof(currentwave[0])));
     }
-    else if (inputString == "longblip\n") {
+    else if (inputString == "Long Blip\n") {
       memcpy(currentwave, longblip, (patternlength*sizeof(currentwave[0])));
     }
-    else if (inputString == "unshortblip\n") {
+    else if (inputString == "Short Unblip\n") {
       memcpy(currentwave, unshortblip, (patternlength*sizeof(currentwave[0])));
     }
-    else if (inputString == "unlongblip\n") {
+    else if (inputString == "Long Unblip\n") {
       memcpy(currentwave, unlongblip, (patternlength*sizeof(currentwave[0])));
     }
     else if (inputString == "interpolation on\n"){

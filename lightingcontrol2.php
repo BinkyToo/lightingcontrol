@@ -5,30 +5,9 @@ $filepointer = fopen($serialPort, "r+");
 
 if (isset($_POST["wave"])) {
 $wave = $_POST["wave"];
-
-switch ($wave) {
-    case "Off":
-        fwrite($filepointer, "off\n");
-    break;
-    case "On":
-        fwrite($filepointer, "on\n");
-    break;
-    case "Sine":
-        fwrite($filepointer, "sine\n");
-    break;
-    case "Square":
-        fwrite($filepointer, "square\n");
-    break;
-    case "Triangle":
-        fwrite($filepointer, "triangle\n");
-    break;
-    case "Sawtooth":
-        fwrite($filepointer, "saw\n");
-    break;
-    default:
-        die("Post data error: Not a recognised wave");
-    }
+fwrite($filepointer, $wave."\n");
 }
+
 elseif (isset($_POST["speed"])) {
 $speed = $_POST["speed"];
 switch ($speed) {
@@ -107,7 +86,13 @@ fclose($filepointer);
                         <input type="submit" value="Sine" name="wave" style="width:80px">
                         <input type="submit" value="Square" name="wave" style="width:80px">
                         <input type="submit" value="Triangle" name="wave" style="width:80px">
-                        <input type="submit" value="Sawtooth" name="wave" style="width:80px">
+                        <input type="submit" value="Saw" name="wave" style="width:80px">
+                        <input type="submit" value="waS" name="wave" style="width:80px">
+                </td></tr><tr><td></td><td>
+                        <input type="submit" value="Short Blip" name="wave" style="width:101px">
+                        <input type="submit" value="Long Blip" name="wave" style="width:101px">
+                        <input type="submit" value="Short Unblip" name="wave" style="width:101px">
+                        <input type="submit" value="Long Unblip" name="wave" style="width:101px">
                 </td></tr><tr><td>
                     Speed
                     </td><td>
