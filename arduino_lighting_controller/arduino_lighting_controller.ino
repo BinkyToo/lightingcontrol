@@ -79,9 +79,8 @@ void calculateBrightnesses(){
 }
 
 void handleSerial() {
-  inputString = getCommand();
-  
-  if (inputString.length() > 0) {                     // What follows is horrid, and would  be better handled by a switch, if that were possible?
+  getCommand();
+  if (inputString[inputString.length()-1]=='\n') {                     // complete command available!
     if (inputString == "faster\n"){         // For some (preferably all) commands, human-readable feedback is sent over serial. this takes the place of comments
       if ((rate+rateincrement)<(cyclelength/patternlength)){
         rate += rateincrement;
@@ -134,18 +133,23 @@ void handleSerial() {
     }
     else if (inputString == "waS\n") {
       memcpy(currentwave, htootwaswave, (patternlength*sizeof(currentwave[0])));
+      Serial.println("Now using backward sawtooth wave pattern");
     }
     else if (inputString == "Short Blip\n") {
       memcpy(currentwave, shortblip, (patternlength*sizeof(currentwave[0])));
+      Serial.println("Now using short blip wave pattern");
     }
     else if (inputString == "Long Blip\n") {
       memcpy(currentwave, longblip, (patternlength*sizeof(currentwave[0])));
+      Serial.println("Now using long blip wave pattern");
     }
     else if (inputString == "Short Unblip\n") {
       memcpy(currentwave, unshortblip, (patternlength*sizeof(currentwave[0])));
+      Serial.println("Now using short negative blip wave pattern");
     }
     else if (inputString == "Long Unblip\n") {
       memcpy(currentwave, unlongblip, (patternlength*sizeof(currentwave[0])));
+      Serial.println("Now using long negative blip wave pattern");
     }
     else if (inputString == "interpolation on\n"){
       interpolate = true;
@@ -204,25 +208,27 @@ void handleSerial() {
       Serial.print(inputString);
       Serial.println("]");
     }
-    
+    inputString = "";
   } 
 }
 
-String getCommand(){
-  static String inputStringx = "";
-  if (inputStringx[inputStringx.length()-1]=='\n'){
-    inputStringx = "";
-  }
+void getCommand(){
+  //static String inputStringx = "";
+  //static String oldinputStringx = "";
+  //if (inputStringx[inputStringx.length()-1]=='\n'){
+  //  inputStringx = "";
+  //}
   while (Serial.available()) {
     Serial.write(6);                        // ASCII Acknowledge NPC - tell the web interface the arduino is working, but simplifies pre-display processing
     char inChar = (char)Serial.read();
-    inputStringx += inChar;
-    if (inChar == '\n') {
-      return(inputStringx);
-      inputStringx = "";
-    }
+    inputString += inChar;
+    //if (inChar == '\n') {
+      //oldinputStringx = inputStringx;
+      //inputString = "";
+      //return(oldinputStringx);
+    //}
   }
-  return("");
+  //return("");
 }
 
 void sendStatus(){              // Not used currently; generating snippets of HTML here is yukky
