@@ -108,10 +108,16 @@ void handleSerial() {
     }
     else if (inputString == "Off\n") {
       memcpy(currentwave, off, (patternlength*sizeof(currentwave[0])));
+      for(int channel = 0; channel < channels; ++channel){
+        brightnesses[channel] = 0;    
+         }
       Serial.println("Turned all lights off");
     }
     else if (inputString == "On\n") {
       memcpy(currentwave, on, (patternlength*sizeof(currentwave[0])));
+      for(int channel = 0; channel < channels; ++channel){
+        brightnesses[channel] = 255;    
+      }
       Serial.println("Turned all lights on");
     }
     else if (inputString == "Sine\n") {
