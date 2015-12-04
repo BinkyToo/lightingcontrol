@@ -17,11 +17,17 @@ fwrite($filepointer, $wave."\n");
 elseif (isset($_POST["speed"])) {
 $speed = $_POST["speed"];
 switch ($speed) {
+    case "Max":
+        fwrite($filepointer, "fast\n");
+    break;
     case "+":
         fwrite($filepointer, "faster\n");
     break;
     case "-":
         fwrite($filepointer, "slower\n");
+    break;
+    case "Min":
+        fwrite($filepointer, "slow\n");
     break;
     default:
         die("Post data error: Not a recognised speed");
@@ -116,8 +122,10 @@ fclose($filepointer);
                 </td></tr><tr><td>
                     Speed
                     </td><td>
+                    <input type="submit" value="Min" name="speed" style="width:38px">
                     <input type="submit" value="-" name="speed" style="width:38px">
                     <input type="submit" value="+" name="speed" style="width:38px">
+                    <input type="submit" value="Max" name="speed" style="width:38px">
                 </td></tr><tr><td>
                     Interpolation
                     </td><td>

@@ -103,7 +103,7 @@ void handleSerial() {
       Serial.println("Reduced speed to minimum");
     }
     else if (inputString == "fast\n") {
-      rate = 251;
+      rate = (cyclelength/patternlength);
       Serial.println("Increased speed to maximum");
     }
     else if (inputString == "Off\n") {
