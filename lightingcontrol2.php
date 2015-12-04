@@ -8,22 +8,22 @@ $wave = $_POST["wave"];
 
 switch ($wave) {
     case "Off":
-    fwrite($filepointer, "off\n");
+        fwrite($filepointer, "off\n");
     break;
     case "On":
-    fwrite($filepointer, "on\n");
+        fwrite($filepointer, "on\n");
     break;
     case "Sine":
-    fwrite($filepointer, "sine\n");
+        fwrite($filepointer, "sine\n");
     break;
     case "Square":
-    fwrite($filepointer, "square\n");
+        fwrite($filepointer, "square\n");
     break;
     case "Triangle":
-    fwrite($filepointer, "triangle\n");
+        fwrite($filepointer, "triangle\n");
     break;
     case "Sawtooth":
-    fwrite($filepointer, "saw\n");
+        fwrite($filepointer, "saw\n");
     break;
     default:
         die("Post data error: Not a recognised wave");
@@ -33,10 +33,10 @@ elseif (isset($_POST["speed"])) {
 $speed = $_POST["speed"];
 switch ($speed) {
     case "+":
-    fwrite($filepointer, "faster\n");
+        fwrite($filepointer, "faster\n");
     break;
     case "-":
-    fwrite($filepointer, "slower\n");
+        fwrite($filepointer, "slower\n");
     break;
     default:
         die("Post data error: Not a recognised speed");
@@ -46,10 +46,10 @@ elseif (isset($_POST["interpolation"])) {
 $interpolation = $_POST["interpolation"];
 switch ($interpolation) {
     case "On":
-    fwrite($filepointer, "interpolation on\n");
+        fwrite($filepointer, "interpolation on\n");
     break;
     case "Off":
-    fwrite($filepointer, "interpolation off\n");
+        fwrite($filepointer, "interpolation off\n");
     break;
     default:
         die("Post data error: Not a recognised interpolation mode");
@@ -59,10 +59,23 @@ elseif (isset($_POST["status"])) {
 $status = $_POST["status"];
 switch ($status) {
     case "Get status":
-    fwrite($filepointer, "status\n");
+        fwrite($filepointer, "status\n");
     break;
     default:
         die("Post data error: Not a recognised status request");
+    }
+}
+elseif (isset($_POST["controlmode"])) {
+$controlmode = $_POST["controlmode"];
+switch ($controlmode) {
+    case "Manual":
+        fwrite($filepointer, "manual\n");
+    break;
+    case "Sequenced":
+        fwrite($filepointer, "auto\n");
+    break;
+    default:
+        die("Post data error: Not a recognised control mode request");
     }
 }
 else {
@@ -113,6 +126,10 @@ fclose($filepointer);
                 </td></tr><tr><td>
                     </td><td>
                     <input type="submit" value="Get status" name="status" style="width:80px">
+                </td></tr><tr><td>
+                    </td><td>
+                    <input type="submit" value="Manual" name="controlmode" style="width:80px">
+                    <input type="submit" value="Sequenced" name="controlmode" style="width:80px">
                 </td></tr>
             </table>
         </form>

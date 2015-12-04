@@ -155,8 +155,14 @@ void handleSerial() {
       interpolate = false;
       Serial.println("Turned interpolation off");
       }
-    else if (inputString == "manual\n"){ manual = true;}
-    else if (inputString == "auto\n"){ manual = false;}
+    else if (inputString == "manual\n"){
+      manual = true;
+      Serial.println("Manual control mode; automatic sequencing disabled");
+    }
+    else if (inputString == "auto\n"){
+      manual = false;
+      Serial.println("Automatic sequencing enabled");
+    }
     else if (inputString == "red on\n"){
       manual = true;
       analogWrite(9, 255);
