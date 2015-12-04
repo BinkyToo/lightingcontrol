@@ -71,7 +71,7 @@ switch ($controlmode) {
     case "Manual":
         fwrite($filepointer, "manual\n");
     break;
-    case "Sequenced":
+    case "Auto":
         fwrite($filepointer, "auto\n");
     break;
     default:
@@ -133,7 +133,7 @@ fclose($filepointer);
                 </td></tr><tr><td>
                     </td><td>
                     <input type="submit" value="Manual" name="controlmode" style="width:80px">
-                    <input type="submit" value="Sequenced" name="controlmode" style="width:80px">
+                    <input type="submit" value="Auto" name="controlmode" style="width:80px">
                 </td></tr>
                 <tr><td>
                     </td><td>
