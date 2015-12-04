@@ -242,6 +242,8 @@ void sendStatus(){              // Not used currently; generating snippets of HT
   Serial.print("Channel 3 brightness = ");
   Serial.print(brightnesses[2]);
   Serial.print("<br>");
+  if (manual)  { Serial.print("Automatic sequencing disabled<br>");}
+  //if (!manual) { Serial.print("Automatic sequencing enabled<br>");}
 }
 
 
